@@ -20,8 +20,8 @@ public class ItemEntity {
     @OneToOne
     private ShoppingListEntity list;
 
-    @OneToMany(mappedBy = "id")
-    private List<ProductEntity> productList = new ArrayList<>();
+    @OneToOne(mappedBy = "id")
+    private ProductEntity product;
     private int count;
     @Enumerated(EnumType.STRING)
     private Unit unit;

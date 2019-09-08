@@ -12,7 +12,7 @@ import java.util.List;
 public class ItemDTO {
 
     private ShoppingListDTO list;
-    private List<ProductDTO> productList;
+    private ProductDTO product;
     private int count;
     private Unit unit;
 }

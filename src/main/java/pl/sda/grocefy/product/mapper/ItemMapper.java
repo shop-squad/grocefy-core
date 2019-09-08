@@ -19,9 +19,7 @@ public class ItemMapper {
                 .list(shoppingListMapper.mapToDTO(itemEntity.getList()))
                 .unit(itemEntity.getUnit())
                 .count(itemEntity.getCount())
-                .productList(itemEntity.getProductList().stream()
-                        .map(productMapper::mapToDTO)
-                        .collect(Collectors.toList()))
+                .product(productMapper.mapToDTO(itemEntity.getProduct()))
                 .build();
     }
 
@@ -30,9 +28,7 @@ public class ItemMapper {
                 .id(null)
                 .count(itemDTO.getCount())
                 .list(shoppingListMapper.mapToEntity(itemDTO.getList()))
-                .productList(itemDTO.getProductList().stream()
-                        .map(productMapper::mapToEntity)
-                        .collect(Collectors.toList()))
+                .product(productMapper.mapToEntity(itemDTO.getProduct()))
                 .unit(itemDTO.getUnit())
                 .build();
     }
