@@ -3,8 +3,6 @@ package pl.sda.grocefy.product.mapper;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.entity.ItemEntity;
 
-import java.util.stream.Collectors;
-
 public class ItemMapper {
     private final ShoppingListMapper shoppingListMapper;
     private final ProductMapper productMapper;

@@ -4,8 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Builder
@@ -20,7 +18,7 @@ public class ItemEntity {
     @OneToOne
     private ShoppingListEntity list;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne
     private ProductEntity product;
     private int count;
     @Enumerated(EnumType.STRING)
