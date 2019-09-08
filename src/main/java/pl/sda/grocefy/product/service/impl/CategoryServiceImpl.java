@@ -1,5 +1,6 @@
 package pl.sda.grocefy.product.service.impl;
 
+import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.CategoryDTO;
 import pl.sda.grocefy.product.mapper.CategoryMapper;
 import pl.sda.grocefy.product.repository.CategoryRepository;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
     private final CategoryMapper mapper;

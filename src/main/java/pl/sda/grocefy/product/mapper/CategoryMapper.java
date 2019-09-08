@@ -1,8 +1,9 @@
 package pl.sda.grocefy.product.mapper;
 
+import org.springframework.stereotype.Component;
 import pl.sda.grocefy.product.dto.CategoryDTO;
 import pl.sda.grocefy.product.entity.CategoryEntity;
-
+@Component
 public class CategoryMapper {
 
     public CategoryDTO mapToDTO(CategoryEntity categoryEntity){
