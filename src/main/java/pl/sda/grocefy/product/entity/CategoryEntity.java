@@ -1,10 +1,10 @@
-package pl.sda.grocefy.Entity;
+package pl.sda.grocefy.product.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "category")
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

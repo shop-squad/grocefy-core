@@ -1,4 +1,4 @@
-package pl.sda.grocefy.Entity;
+package pl.sda.grocefy.product.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,17 +6,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "item")
-public class Item {
+public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @OneToOne
-    private ShoppingList list;
+    private ShoppingListEntity list;
 
     @OneToMany(mappedBy = "id")
-    private List<Product> productList = new ArrayList<>();
+    private List<ProductEntity> productList = new ArrayList<>();
     private int count;
     private Unit unit;
 

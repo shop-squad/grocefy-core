@@ -1,10 +1,10 @@
-package pl.sda.grocefy.Entity;
+package pl.sda.grocefy.product.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "shopping_list")
-public class ShoppingList {
+public class ShoppingListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +13,6 @@ public class ShoppingList {
     private String hash;
 
     @OneToOne
-    private User user;
+    private UserEntity user;
 
 }

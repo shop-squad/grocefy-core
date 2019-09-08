@@ -1,4 +1,4 @@
-package pl.sda.grocefy.Entity;
+package pl.sda.grocefy.product.entity;
 
 public enum Unit {
     szt,

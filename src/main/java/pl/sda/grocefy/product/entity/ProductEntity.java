@@ -1,4 +1,4 @@
-package pl.sda.grocefy.Entity;
+package pl.sda.grocefy.product.entity;
 
 import lombok.Getter;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "product")
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,5 +16,5 @@ public class Product {
     private String name;
 
     @ManyToOne
-    private Category category;
+    private CategoryEntity category;
 }
