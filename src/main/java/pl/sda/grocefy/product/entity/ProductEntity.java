@@ -1,10 +1,12 @@
 package pl.sda.grocefy.product.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
 
 @Getter
+@Builder
 @Entity
 @Table(name = "product")
 public class ProductEntity {
