@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+      xmlns: layout:decorate="layout/layout">
+</head>>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Grocefy</title>
 </head>
+<script type="text/javascript">
+    function Copy() {
+        var Url = document.getElementById("url");
+        Url.innerHTML = window.location.href;
+        console.log(Url.innerHTML)
+        Url.select();
+        document.execCommand("copy");
+    }
+</script>
 <body>
-<form action="#" method="post">
-    <input list="products" class="form-control" id="nameinput">
-    <datalist id="products">
-        <option th:each="product : ${products}" th:value="${product.name}" th:label="${product.name}">
-    </datalist>
-    <select>
-        <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
-    </select>
-</form>
+<div layout:fragment="content">
+    <div class="container">
+
+
+        <div align="center">Dodaj element</div>
+    </div>
+    <div align="center">
+        <form action="#" th:action="@{/list/add}" th:object="${newItem}" method="post">
+
+            <button type="button">+</button>
+
+            <input type="text" th:field="*{count}">
+
+            <div class="dropdown">
+                <select>
+                    <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
+                </select>
+            </div>
+
+            <input type="text" th:field="*{product}">
+
+        </form>
+
+
+    </div>
+</div>
 </body>
 </html>
