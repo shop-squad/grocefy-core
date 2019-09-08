@@ -1,8 +1,10 @@
 package pl.sda.grocefy.product.mapper;
 
+import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.ShoppingListEntity;
 
+@Service
 public class ShoppingListMapper {
     private final UserMapper userMapper;
 

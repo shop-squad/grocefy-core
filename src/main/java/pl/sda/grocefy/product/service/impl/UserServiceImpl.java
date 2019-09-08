@@ -1,5 +1,6 @@
 package pl.sda.grocefy.product.service.impl;
 
+import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.UserDTO;
 import pl.sda.grocefy.product.entity.UserEntity;
 import pl.sda.grocefy.product.mapper.UserMapper;
@@ -8,6 +9,7 @@ import pl.sda.grocefy.product.service.UserService;
 
 import javax.transaction.Transactional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
