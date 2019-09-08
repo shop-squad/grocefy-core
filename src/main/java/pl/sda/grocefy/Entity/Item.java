@@ -1,6 +1,7 @@
 package pl.sda.grocefy.Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class Item {
     private ShoppingList list;
 
     @OneToMany(mappedBy = "id")
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
     private int count;
     private Unit unit;
 
