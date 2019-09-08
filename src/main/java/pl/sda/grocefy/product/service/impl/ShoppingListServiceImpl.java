@@ -6,6 +6,8 @@ import pl.sda.grocefy.product.mapper.ShoppingListMapper;
 import pl.sda.grocefy.product.repository.ShoppingListRepository;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
+import javax.transaction.Transactional;
+
 public class ShoppingListServiceImpl implements ShoppingListService {
 
     private final ShoppingListMapper mapper;
@@ -22,6 +24,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         return mapper.mapToDTO(shoppingListRepository.findByHash(hash));
     }
 
+    @Transactional
     @Override
     public void addList(ShoppingListDTO shoppingListDTO) {
         ShoppingListEntity shoppingListEntity = mapper.mapToEntity(shoppingListDTO);
