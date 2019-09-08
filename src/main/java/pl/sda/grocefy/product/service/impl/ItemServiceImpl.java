@@ -1,5 +1,6 @@
 package pl.sda.grocefy.product.service.impl;
 
+import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
@@ -13,6 +14,7 @@ import pl.sda.grocefy.product.service.ItemService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository repository;

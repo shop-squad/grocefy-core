@@ -1,8 +1,9 @@
 package pl.sda.grocefy.product.mapper;
 
+import org.springframework.stereotype.Component;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.entity.ItemEntity;
-
+@Component
 public class ItemMapper {
     private final ShoppingListMapper shoppingListMapper;
     private final ProductMapper productMapper;

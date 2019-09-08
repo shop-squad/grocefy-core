@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" method="post">
+    <input list="products" class="form-control" id="nameinput">
+    <datalist id="products">
+        <option th:each="product : ${products}" th:value="${product.name}" th:label="${product.name}">
+    </datalist>
+    <select>
+        <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
+    </select>
+</form>
+</body>
+</html>

@@ -1,11 +1,13 @@
 package pl.sda.grocefy.product.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import pl.sda.grocefy.product.entity.Unit;
 
 @Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemDTO {
 
     private ShoppingListDTO list;

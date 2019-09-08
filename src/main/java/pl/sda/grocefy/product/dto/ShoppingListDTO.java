@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -15,8 +16,4 @@ public class ShoppingListDTO {
     private String hash;
     private UserDTO user;
 
-    public ShoppingListDTO(String hash, UserDTO user) {
-        this.hash = hash;
-        this.user = user;
-    }
 }
