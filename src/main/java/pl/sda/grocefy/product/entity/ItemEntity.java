@@ -18,7 +18,7 @@ public class ItemEntity {
     @OneToOne
     private ShoppingListEntity list;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private ProductEntity product;
     private int count;
     @Enumerated(EnumType.STRING)

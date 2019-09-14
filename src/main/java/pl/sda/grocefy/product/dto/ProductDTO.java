@@ -15,4 +15,8 @@ public class ProductDTO {
 
     private String name;
     private CategoryEntity category;
+
+    public ProductDTO(String name) {
+        this.name = name;
+    }
 }
