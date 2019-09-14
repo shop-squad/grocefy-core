@@ -17,7 +17,7 @@ public class ItemDTO {
     private Unit unit;
 
     public ItemDTO() {
-        this.list = new ShoppingListDTO(UUID.randomUUID().toString(), new UserDTO("jan", "hasło", "sdfgsd@dfsf"));
+        this.list = new ShoppingListDTO(null,UUID.randomUUID().toString(), new UserDTO("jan", "hasło", "sdfgsd@dfsf"));
         this.product = new ProductDTO();
     }
 }

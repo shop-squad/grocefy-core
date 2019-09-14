@@ -5,12 +5,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.grocefy.product.dto.ItemDTO;
-import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.service.ItemService;
 import pl.sda.grocefy.product.service.ProductService;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class AddToListController {
