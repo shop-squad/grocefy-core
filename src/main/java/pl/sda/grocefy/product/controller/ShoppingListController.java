@@ -11,6 +11,7 @@ import pl.sda.grocefy.product.service.ItemService;
 import pl.sda.grocefy.product.service.ProductService;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Controller
@@ -38,6 +39,7 @@ public class ShoppingListController {
     @PostMapping("list/new")
     public ModelAndView newList(@ModelAttribute("newList") ShoppingListDTO newList) {
         newList.setHash(UUID.randomUUID().toString());
+        newList.setItems(new ArrayList<>());
         shoppingListService.addList(newList);
         return new ModelAndView("redirect:/");
     }

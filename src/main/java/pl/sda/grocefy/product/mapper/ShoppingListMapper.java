@@ -1,5 +1,6 @@
 package pl.sda.grocefy.product.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.ShoppingListEntity;
@@ -20,14 +21,14 @@ public class ShoppingListMapper {
         return ShoppingListDTO.builder()
                 .name(shoppingListEntity.getName())
                 .hash(shoppingListEntity.getHash())
-               // .items(shoppingListEntity.getItems().stream().map(itemMapper::mapToDTO).collect(Collectors.toList()))
+                .items(shoppingListEntity.getItems().stream().map(itemMapper::mapToDTO).collect(Collectors.toList()))
                 .user(null).build();
     }
 
     public ShoppingListEntity mapToEntity(ShoppingListDTO shoppingListDTO){
         return ShoppingListEntity.builder()
                 .id(null)
-               // .items(shoppingListDTO.getItems().stream().map(itemMapper::mapToEntity).collect(Collectors.toList()))
+                .items(shoppingListDTO.getItems().stream().map(itemMapper::mapToEntity).collect(Collectors.toList()))
                 .name(shoppingListDTO.getName())
                 .hash(shoppingListDTO.getHash())
                 .user(null).build();

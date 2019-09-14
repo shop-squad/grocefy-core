@@ -11,6 +11,7 @@ import pl.sda.grocefy.product.mapper.ShoppingListMapper;
 import pl.sda.grocefy.product.repository.ItemRepository;
 import pl.sda.grocefy.product.service.ItemService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,13 +20,11 @@ public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository repository;
     private final ItemMapper itemMapper;
-    private final ShoppingListMapper shoppingListMapper;
     private final ProductMapper productMapper;
 
-    public ItemServiceImpl(ItemRepository repository, ItemMapper itemMapper, ShoppingListMapper shoppingListMapper, ProductMapper productMapper) {
+    public ItemServiceImpl(ItemRepository repository, ItemMapper itemMapper, ProductMapper productMapper) {
         this.repository = repository;
         this.itemMapper = itemMapper;
-        this.shoppingListMapper = shoppingListMapper;
         this.productMapper = productMapper;
     }
 
@@ -45,7 +44,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDTO> findItemsByListId(Long id) {
-        List<ItemEntity> byListId = repository.findByList_Id(id);
-        return byListId.stream().map(itemMapper::mapToDTO).collect(Collectors.toList());
+        return new ArrayList<>();
     }
 }

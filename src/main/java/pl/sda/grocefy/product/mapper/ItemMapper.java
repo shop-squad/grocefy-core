@@ -5,11 +5,10 @@ import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.entity.ItemEntity;
 @Component
 public class ItemMapper {
-    private final ShoppingListMapper shoppingListMapper;
+
     private final ProductMapper productMapper;
 
-    public ItemMapper(ShoppingListMapper shoppingListMapper, ProductMapper productMapper) {
-        this.shoppingListMapper = shoppingListMapper;
+    public ItemMapper( ProductMapper productMapper) {
         this.productMapper = productMapper;
     }
 
