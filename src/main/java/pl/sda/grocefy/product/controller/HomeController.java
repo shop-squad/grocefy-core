@@ -20,7 +20,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping("/a")
     public ModelAndView getHomePage(){
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("hash", generateHash());

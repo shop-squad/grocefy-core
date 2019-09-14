@@ -13,14 +13,16 @@ public class ShoppingListMapper {
 
     public ShoppingListDTO mapToDTO(ShoppingListEntity shoppingListEntity){
         return ShoppingListDTO.builder()
+                .name(shoppingListEntity.getName())
                 .hash(shoppingListEntity.getHash())
-                .user(userMapper.mapUser(shoppingListEntity.getUser())).build();
+                .user(null).build();
     }
 
     public ShoppingListEntity mapToEntity(ShoppingListDTO shoppingListDTO){
         return ShoppingListEntity.builder()
                 .id(null)
+                .name(shoppingListDTO.getName())
                 .hash(shoppingListDTO.getHash())
-                .user(userMapper.mapUserToEntity(shoppingListDTO.getUser())).build();
+                .user(null).build();
     }
 }

@@ -16,6 +16,7 @@ public class ShoppingListEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
     private String hash = getHashcode();
 
     @OneToOne
