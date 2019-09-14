@@ -25,6 +25,30 @@
                     <input type="submit" class="button btn-success" value="Dodaj listę"/>
                 </div>
             </form>
+            <div class="col-sm-12">
+                <h3>Zapisane listy</h3>
+                <div class="row col-md-7 table-responsive ">
+                    <table id="listTable" class="table">
+                        <thead>
+                        <tr>
+                            <th>Lp</th>
+                            <th>Nazwa</th>
+                            <th>Hash listy</th>
+                            <th>Użytkownik</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="list, rowStat : ${lists}" th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                            <td th:text="${rowStat.index}+1">1</td>
+                            <td th:text="${list.name}">lista</td>
+                            <td th:text="${list.hash}">hash</td>
+                            <td th:text="${list.user}">user</td>
+                            <td><a th:href="@{/list/}+${list.hash}" th:text="Edit"></a></td>
+                            <td><a th:href="@{/list/del/}+${list.hash}" th:text="Delete"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
 </div>

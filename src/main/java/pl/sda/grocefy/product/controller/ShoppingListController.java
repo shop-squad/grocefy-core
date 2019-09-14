@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
+import java.util.UUID;
+
 @Controller
 public class ShoppingListController {
 
@@ -22,12 +24,14 @@ public class ShoppingListController {
     public ModelAndView getForm(){
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("newList", new ShoppingListDTO());
+        modelAndView.addObject("lists", shoppingListService.getAll());
         return modelAndView;
     }
 
     @PostMapping("list/new")
     public ModelAndView newList(@ModelAttribute("newList") ShoppingListDTO newList){
+        newList.setHash(UUID.randomUUID().toString());
         shoppingListService.addList(newList);
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/");
     }
 }
