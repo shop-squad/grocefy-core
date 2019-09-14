@@ -10,6 +10,7 @@ public interface ItemService {
 
     List<ItemDTO> findItemsFromList(ShoppingListDTO list);
     ItemDTO findItemByProduct(ProductDTO productDTO);
+    List<ItemDTO> findItemsByListId(Long id);
     void addItem(ItemDTO newItem);
 
 }

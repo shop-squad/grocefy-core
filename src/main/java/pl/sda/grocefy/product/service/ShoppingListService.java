@@ -7,5 +7,6 @@ import java.util.List;
 public interface ShoppingListService {
     ShoppingListDTO findListByHash(String hash);
     List<ShoppingListDTO> getAll();
+    Long getListIdFromHash(String hash);
     void addList(ShoppingListDTO shoppingListDTO);
 }

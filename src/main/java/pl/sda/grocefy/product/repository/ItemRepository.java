@@ -11,6 +11,7 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
     List<ItemEntity> findAllByList(ShoppingListEntity list);
+    List<ItemEntity> findByList_Id(Long id);
 
     ItemEntity findByProduct(ProductEntity product);
 }

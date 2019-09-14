@@ -46,4 +46,10 @@ public class ItemServiceImpl implements ItemService {
     public void addItem(ItemDTO newItem) {
         repository.save(itemMapper.mapToEntity(newItem));
     }
+
+    @Override
+    public List<ItemDTO> findItemsByListId(Long id) {
+        List<ItemEntity> byListId = repository.findByList_Id(id);
+        return byListId.stream().map(itemMapper::mapToDTO).collect(Collectors.toList());
+    }
 }

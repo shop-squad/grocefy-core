@@ -41,9 +41,9 @@
                         <tr th:each="list, rowStat : ${lists}" th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                             <td th:text="${rowStat.index}+1">1</td>
                             <td th:text="${list.name}">lista</td>
-                            <td th:text="${list.hash}">hash</td>
+                            <td><a th:href="@{/list/}+${list.hash}" th:text="${list.hash}"></a> </td>
                             <td th:text="${list.user}">user</td>
-                            <td><a th:href="@{/list/}+${list.hash}" th:text="Edit"></a></td>
+                            <td><a th:href="@{/list/edit/}+${list.hash}" th:text="Edit"></a></td>
                             <td><a th:href="@{/list/del/}+${list.hash}" th:text="Delete"></a></td>
                         </tr>
                         </tbody>
