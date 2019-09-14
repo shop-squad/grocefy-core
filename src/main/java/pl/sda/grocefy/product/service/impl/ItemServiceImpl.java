@@ -31,19 +31,15 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public List<ItemDTO> findItemsFromList(ShoppingListDTO list) {
-        List<ItemEntity> allByList = repository.findAllByList(shoppingListMapper.mapToEntity(list));
-        return allByList.stream().map(itemMapper::mapToDTO).collect(Collectors.toList());
-    }
-
-    @Override
     public ItemDTO findItemByProduct(ProductDTO productDTO) {
         ItemEntity byProduct = repository.findByProduct(productMapper.mapToEntity(productDTO));
         return itemMapper.mapToDTO(byProduct);
     }
 
     @Override
-    public void addItem(ItemDTO newItem) {
+    public void addItem(String hash, ItemDTO newItem) {
+
+
         repository.save(itemMapper.mapToEntity(newItem));
     }
 

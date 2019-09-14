@@ -62,10 +62,10 @@ public class ShoppingListController {
 
     @PostMapping("/list/edit/{hash}")
     public void addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem){
-        newItem.setList(shoppingListService.findListByHash(hash));
-        String name = newItem.getProduct().getName();
-        ProductDTO productByName = productService.getProductByName(name);
-        newItem.setProduct(productByName);
-        itemService.addItem(newItem);
+//        newItem.setList(shoppingListService.findListByHash(hash));
+//        String name = newItem.getProduct().getName();
+//        ProductDTO productByName = productService.getProductByName(name);
+//        newItem.setProduct(productByName);
+        itemService.addItem(hash, newItem);
     }
 }

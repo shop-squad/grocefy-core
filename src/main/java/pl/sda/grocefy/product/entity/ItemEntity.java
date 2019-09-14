@@ -15,10 +15,9 @@ public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private ShoppingListEntity list;
+    private String hash;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     private ProductEntity product;
     private int count;
     @Enumerated(EnumType.STRING)

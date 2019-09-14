@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -21,13 +22,12 @@ public class ShoppingListEntity {
     private Long id;
 
     private String name;
-    private String hash = getHashcode();
+    private String hash;
 
     @OneToOne
     private UserEntity user;
 
-    private String getHashcode(){
-        return  LocalDateTime.now().toString();
-    }
+    @OneToMany
+    private List<ItemEntity> items;
 
 }

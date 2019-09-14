@@ -15,7 +15,7 @@ public class ItemMapper {
 
     public ItemDTO mapToDTO(ItemEntity itemEntity) {
         return ItemDTO.builder()
-                .list(shoppingListMapper.mapToDTO(itemEntity.getList()))
+                .hash(itemEntity.getHash())
                 .unit(itemEntity.getUnit())
                 .count(itemEntity.getCount())
                 .product(productMapper.mapToDTO(itemEntity.getProduct()))
@@ -25,8 +25,8 @@ public class ItemMapper {
     public ItemEntity mapToEntity(ItemDTO itemDTO) {
         return ItemEntity.builder()
                 .id(null)
+                .hash(itemDTO.getHash())
                 .count(itemDTO.getCount())
-                .list(shoppingListMapper.mapToEntity(itemDTO.getList()))
                 .product(productMapper.mapToEntity(itemDTO.getProduct()))
                 .unit(itemDTO.getUnit())
                 .build();

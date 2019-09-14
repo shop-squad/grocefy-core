@@ -2,6 +2,8 @@ package pl.sda.grocefy.product.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -12,5 +14,6 @@ public class ShoppingListDTO {
     private String name;
     private String hash;
     private UserDTO user;
+    private List<ItemDTO> items;
 
 }
