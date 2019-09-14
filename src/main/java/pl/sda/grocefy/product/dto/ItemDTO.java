@@ -3,10 +3,11 @@ package pl.sda.grocefy.product.dto;
 import lombok.*;
 import pl.sda.grocefy.product.entity.Unit;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class ItemDTO {
 
@@ -14,4 +15,9 @@ public class ItemDTO {
     private ProductDTO product;
     private int count;
     private Unit unit;
+
+    public ItemDTO() {
+        this.list = new ShoppingListDTO(UUID.randomUUID().toString(), new UserDTO("jan", "hasło", "sdfgsd@dfsf"));
+        this.product = new ProductDTO();
+    }
 }

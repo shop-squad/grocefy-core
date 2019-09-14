@@ -20,29 +20,56 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-
-
-        <div align="center">Dodaj element</div>
-    </div>
-    <div align="center">
-        <form action="#" th:action="@{/list/add}" th:object="${newItem}" method="post">
-
-            <button type="button">+</button>
-
-            <input type="text" th:field="*{count}">
-
-            <div class="dropdown">
-                <select>
-                    <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
-                </select>
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <h3>Dodaj element</h3>
             </div>
-
-            <input type="text" th:field="*{product}">
-
-        </form>
-
-
+            <form action="#" th:action="@{/list/add}" th:object="${newItem}" th:method="post">
+                <div class="col-sm-3 col-lg-3 text-center">
+                    <input type="submit" class="button btn-success" value="+"/>
+                </div>
+                <div class="col-sm-3 col-lg-3 text-center">
+                    <input type="number" th:field="*{count}" th:step="0.1">
+                </div>
+                <div class="col-sm-3 col-lg-3 text-center">
+                    <select th:field="*{unit}">
+                        <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-3 col-lg-3 text-center">
+                    <input th:field="*{product.name}">
+<!--                    <datalist th:id="products">-->
+<!--                        <option th:each="product: ${products}" th:value="${product.name}"-->
+<!--                                th:label="${product.name}"></option>-->
+<!--                    </datalist>-->
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+<!--<div align="center">Dodaj element</div>
+</div>
+<div align="center">
+<form action="#" th:action="@{/list/add}" th:object="${newItem}" method="post">
+
+    <button type="button">+</button>
+
+    <input type="text" th:field="*{count}">
+
+    <div class="dropdown">
+        <select>
+            <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
+        </select>
+    </div>
+
+    <input type="text" th:field="*{product}">
+
+</form>
+
+
+</div>
+</div>-->
 </body>
 </html>
