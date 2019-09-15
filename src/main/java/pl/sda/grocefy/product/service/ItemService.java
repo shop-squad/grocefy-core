@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ItemService {
 
-    ItemDTO findItemByProduct(ProductDTO productDTO);
-    List<ItemDTO> findItemsByListId(Long id);
+    List<ItemDTO> findItemByListHash(String hash);
     void addItem(String hash, ItemDTO newItem);
+    void removeItem(ItemDTO itemToRemove);
 
 }

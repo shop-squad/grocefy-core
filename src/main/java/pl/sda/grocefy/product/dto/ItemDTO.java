@@ -12,7 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ItemDTO {
 
-    private ProductDTO product;
+    //private ProductDTO product;
+    private Long id;
+    private String product;
     private String hash;
     private int count;
     private Unit unit;

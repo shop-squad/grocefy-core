@@ -26,8 +26,4 @@ public class ShoppingListEntity {
 
     @OneToOne
     private UserEntity user;
-
-    @OneToMany
-    private List<ItemEntity> items;
-
 }

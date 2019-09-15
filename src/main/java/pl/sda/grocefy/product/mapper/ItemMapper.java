@@ -6,18 +6,13 @@ import pl.sda.grocefy.product.entity.ItemEntity;
 @Component
 public class ItemMapper {
 
-    private final ProductMapper productMapper;
-
-    public ItemMapper( ProductMapper productMapper) {
-        this.productMapper = productMapper;
-    }
-
     public ItemDTO mapToDTO(ItemEntity itemEntity) {
         return ItemDTO.builder()
+                .id(itemEntity.getId())
                 .hash(itemEntity.getHash())
                 .unit(itemEntity.getUnit())
                 .count(itemEntity.getCount())
-                .product(productMapper.mapToDTO(itemEntity.getProduct()))
+                .product(itemEntity.getProduct())
                 .build();
     }
 
@@ -26,7 +21,7 @@ public class ItemMapper {
                 .id(null)
                 .hash(itemDTO.getHash())
                 .count(itemDTO.getCount())
-                .product(productMapper.mapToEntity(itemDTO.getProduct()))
+                .product(itemDTO.getProduct())
                 .unit(itemDTO.getUnit())
                 .build();
     }

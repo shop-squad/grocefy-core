@@ -12,6 +12,8 @@ import pl.sda.grocefy.product.service.ProductService;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -48,26 +50,32 @@ public class ShoppingListController {
     public ModelAndView showList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("showList");
         mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemsByListId(shoppingListService.getListIdFromHash(hash)));
+        mav.addObject("items", itemService.findItemByListHash(hash));
         return mav;
     }
 
-    @RequestMapping("/list/edit/{hash}")
+    @RequestMapping(value = "/list/edit/{hash}")
     public ModelAndView editList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("editList");
         mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemsByListId(shoppingListService.getListIdFromHash(hash)));
+        mav.addObject("items", itemService.findItemByListHash(hash));
         mav.addObject("units", Unit.values());
         mav.addObject("newItem", new ItemDTO());
         return mav;
     }
 
     @PostMapping("/list/edit/{hash}")
-    public void addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem){
-//        newItem.setList(shoppingListService.findListByHash(hash));
-//        String name = newItem.getProduct().getName();
-//        ProductDTO productByName = productService.getProductByName(name);
-//        newItem.setProduct(productByName);
-        itemService.addItem(hash, newItem);
+    public ModelAndView addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem) {
+        List<ItemDTO> itemsList = itemService.findItemByListHash(hash);
+        Optional<ItemDTO> first = itemsList.stream().filter(itemDTO -> itemDTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst();
+        if (first.isPresent()) {
+            ItemDTO itemDTO = first.get();
+            itemService.removeItem(itemDTO);
+            itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
+            itemService.addItem(hash, itemDTO);
+        } else {
+            itemService.addItem(hash, newItem);
+        }
+        return new ModelAndView("redirect:/list/edit/" + hash);
     }
 }
