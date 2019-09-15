@@ -6,6 +6,8 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.Unit;
+import pl.sda.grocefy.product.exception.ListNotFoundException;
+import pl.sda.grocefy.product.exception.WebApplicationException;
 import pl.sda.grocefy.product.service.ItemService;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
@@ -43,7 +45,7 @@ public class ShoppingListController {
     }
 
     @RequestMapping("/list/{hash}")
-    public ModelAndView showList(@PathVariable("hash") String hash) {
+    public ModelAndView showList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("showList");
         mav.addObject("list", shoppingListService.findListByHash(hash));
         mav.addObject("items", itemService.findItemByListHash(hash));
@@ -51,7 +53,7 @@ public class ShoppingListController {
     }
 
     @RequestMapping(value = "/list/edit/{hash}")
-    public ModelAndView editList(@PathVariable("hash") String hash) {
+    public ModelAndView editList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("editList");
         mav.addObject("list", shoppingListService.findListByHash(hash));
         mav.addObject("items", itemService.findItemByListHash(hash));
@@ -66,9 +68,13 @@ public class ShoppingListController {
         Optional<ItemDTO> first = itemsList.stream().filter(itemDTO -> itemDTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst();
         if (first.isPresent()) {
             ItemDTO itemDTO = first.get();
-            itemService.removeItem(itemDTO);
-            itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
-            itemService.addItem(hash, itemDTO);
+            if (itemDTO.getUnit().equals(newItem.getUnit())) {
+                itemService.removeItem(itemDTO);
+                itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
+                itemService.addItem(hash, itemDTO);
+            }else {
+                itemService.addItem(hash, newItem);
+            }
         } else {
             itemService.addItem(hash, newItem);
         }
@@ -76,7 +82,7 @@ public class ShoppingListController {
     }
 
     @RequestMapping("/list/edit/{hash}/del/{id}")
-    public ModelAndView deleteItemFromList(@PathVariable("hash") String hash, @PathVariable("id") String id ){
+    public ModelAndView deleteItemFromList(@PathVariable("hash") String hash, @PathVariable("id") String id) {
         List<ItemDTO> itemByListHash = itemService.findItemByListHash(hash);
         Optional<ItemDTO> first = itemByListHash.stream().filter(itemDTO -> itemDTO.getId().equals(Long.valueOf(id))).findFirst();
         first.ifPresent(itemService::removeItem);
@@ -84,7 +90,7 @@ public class ShoppingListController {
     }
 
     @RequestMapping("/list/del/{hash}")
-    public ModelAndView deleteList(@PathVariable("hash") String hash){
+    public ModelAndView deleteList(@PathVariable("hash") String hash) {
         itemService.deleteAllItemsByListHash(hash);
         shoppingListService.deleteList(hash);
         return new ModelAndView("redirect:/");
