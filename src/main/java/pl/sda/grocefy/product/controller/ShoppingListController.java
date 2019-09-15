@@ -6,10 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.Unit;
-import pl.sda.grocefy.product.exception.ListNotFoundException;
 import pl.sda.grocefy.product.exception.WebApplicationException;
 import pl.sda.grocefy.product.service.ItemService;
 import pl.sda.grocefy.product.service.ShoppingListService;
+
 
 import java.util.ArrayList;
 import java.util.List;
