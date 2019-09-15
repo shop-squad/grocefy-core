@@ -1,7 +1,9 @@
 package pl.sda.grocefy.product.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "item")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemEntity {
 
     @Id
