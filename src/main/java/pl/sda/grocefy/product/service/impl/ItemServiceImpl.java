@@ -34,6 +34,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void removeItem(ItemDTO itemToRemove) {
-        repository.delete(itemMapper.mapToEntity(itemToRemove));
+        repository.deleteById(itemToRemove.getId());
     }
 }

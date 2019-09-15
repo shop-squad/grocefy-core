@@ -21,12 +21,10 @@ public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
     private final ItemService itemService;
-    private final ProductService productService;
 
-    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService, ProductService productService) {
+    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService) {
         this.shoppingListService = shoppingListService;
         this.itemService = itemService;
-        this.productService = productService;
     }
 
 
@@ -76,6 +74,14 @@ public class ShoppingListController {
         } else {
             itemService.addItem(hash, newItem);
         }
+        return new ModelAndView("redirect:/list/edit/" + hash);
+    }
+
+    @RequestMapping("/list/edit/{hash}/del/{id}")
+    public ModelAndView deleteItemFromList(@PathVariable("hash") String hash, @PathVariable("id") String id ){
+        List<ItemDTO> itemByListHash = itemService.findItemByListHash(hash);
+        Optional<ItemDTO> first = itemByListHash.stream().filter(itemDTO -> itemDTO.getId().equals(Long.valueOf(id))).findFirst();
+        first.ifPresent(itemService::removeItem);
         return new ModelAndView("redirect:/list/edit/" + hash);
     }
 }
