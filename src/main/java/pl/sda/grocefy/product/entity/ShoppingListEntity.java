@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Builder
@@ -24,6 +22,6 @@ public class ShoppingListEntity {
     private String name;
     private String hash;
 
-    @OneToOne
+    @ManyToOne
     private UserEntity user;
 }

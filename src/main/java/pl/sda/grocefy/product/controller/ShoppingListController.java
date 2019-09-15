@@ -3,13 +3,10 @@ package pl.sda.grocefy.product.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 import pl.sda.grocefy.product.dto.ItemDTO;
-import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.Unit;
 import pl.sda.grocefy.product.service.ItemService;
-import pl.sda.grocefy.product.service.ProductService;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
 import java.util.ArrayList;

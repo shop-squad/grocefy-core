@@ -41,11 +41,6 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         return all.stream().map(mapper::mapToDTO).collect(Collectors.toList());
     }
 
-    @Override
-    public Long getListIdFromHash(String hash) {
-        ShoppingListEntity byHash = shoppingListRepository.findByHash(hash);
-        return byHash.getId();
-    }
 
     @Override
     public void deleteList(String hash) {
