@@ -46,4 +46,9 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         ShoppingListEntity byHash = shoppingListRepository.findByHash(hash);
         return byHash.getId();
     }
+
+    @Override
+    public void deleteList(String hash) {
+        shoppingListRepository.delete(shoppingListRepository.findByHash(hash));
+    }
 }

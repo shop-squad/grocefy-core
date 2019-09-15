@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
-    ItemEntity findByProduct(ProductEntity product);
     List<ItemEntity> findAllByHash(String Hash);
+    void deleteAllByHash(String hash);
 }

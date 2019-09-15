@@ -3,6 +3,7 @@ package pl.sda.grocefy.product.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
@@ -83,5 +84,12 @@ public class ShoppingListController {
         Optional<ItemDTO> first = itemByListHash.stream().filter(itemDTO -> itemDTO.getId().equals(Long.valueOf(id))).findFirst();
         first.ifPresent(itemService::removeItem);
         return new ModelAndView("redirect:/list/edit/" + hash);
+    }
+
+    @RequestMapping("/list/del/{hash}")
+    public ModelAndView deleteList(@PathVariable("hash") String hash){
+        itemService.deleteAllItemsByListHash(hash);
+        shoppingListService.deleteList(hash);
+        return new ModelAndView("redirect:/");
     }
 }
