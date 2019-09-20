@@ -83,7 +83,7 @@ public class ShoppingListController {
         return new ModelAndView("redirect:/list/edit/" + hash);
     }
 
-    @RequestMapping("/list/del/{hash}")
+    @PostMapping("/list/del/{hash}")
     public ModelAndView deleteList(@PathVariable("hash") String hash){
         itemService.deleteAllItemsByListHash(hash);
         shoppingListService.deleteList(hash);
