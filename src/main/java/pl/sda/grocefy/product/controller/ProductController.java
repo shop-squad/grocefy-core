@@ -28,9 +28,6 @@ public class ProductController {
         List<ProductDTO> allProducts = productService.getAllProducts();
         mav.addObject("products", allProducts);
         mav.addObject("newProduct", new ProductDTO());
-        if (allProducts.isEmpty()) {
-            mav.addObject("listEmpty", true);
-        }
         return mav;
     }
 

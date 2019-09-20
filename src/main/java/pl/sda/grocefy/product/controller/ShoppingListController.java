@@ -65,19 +65,16 @@ public class ShoppingListController {
     @PostMapping("/list/edit/{hash}")
     public ModelAndView addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem) {
         List<ItemDTO> itemsList = itemService.findItemByListHash(hash);
-        Optional<ItemDTO> first = itemsList.stream().filter(itemDTO -> itemDTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst();
-        if (first.isPresent()) {
-            ItemDTO itemDTO = first.get();
-            if (itemDTO.getUnit().equals(newItem.getUnit())) {
-                itemService.removeItem(itemDTO);
-                itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
-                itemService.addItem(hash, itemDTO);
-            }else {
-                itemService.addItem(hash, newItem);
-            }
+        ItemDTO itemDTO = itemsList.stream().filter(DTO -> DTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst().orElse(newItem);
+
+        if (!itemDTO.equals(newItem) && itemDTO.getUnit().equals(newItem.getUnit())) {
+            itemService.removeItem(itemDTO);
+            itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
+            itemService.addItem(hash, itemDTO);
         } else {
             itemService.addItem(hash, newItem);
         }
+
         return new ModelAndView("redirect:/list/edit/" + hash);
     }
 
