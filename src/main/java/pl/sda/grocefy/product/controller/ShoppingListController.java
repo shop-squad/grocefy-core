@@ -21,10 +21,15 @@ public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
     private final ItemService itemService;
+    private final ProductService productService;
 
-    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService) {
+    private final static String LIST = "list";
+    private final static String ITEMS = "items";
+
+    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService, ProductService productService) {
         this.shoppingListService = shoppingListService;
         this.itemService = itemService;
+        this.productService = productService;
     }
 
 
@@ -47,16 +52,16 @@ public class ShoppingListController {
     @RequestMapping("/list/{hash}")
     public ModelAndView showList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("showList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
+        mav.addObject(LIST, shoppingListService.findListByHash(hash));
+        mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         return mav;
     }
 
     @RequestMapping(value = "/list/edit/{hash}")
     public ModelAndView editList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("editList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
+        mav.addObject(LIST, shoppingListService.findListByHash(hash));
+        mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         mav.addObject("units", Unit.values());
         mav.addObject("newItem", new ItemDTO());
         return mav;
@@ -66,6 +71,7 @@ public class ShoppingListController {
     public ModelAndView addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem) {
         List<ItemDTO> itemsList = itemService.findItemByListHash(hash);
         Optional<ItemDTO> first = itemsList.stream().filter(itemDTO -> itemDTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst();
+        ModelAndView mav = new ModelAndView("redirect:/list/edit/" + hash);
         if (first.isPresent()) {
             ItemDTO itemDTO = first.get();
             itemService.removeItem(itemDTO);
@@ -74,7 +80,7 @@ public class ShoppingListController {
         } else {
             itemService.addItem(hash, newItem);
         }
-        return new ModelAndView("redirect:/list/edit/" + hash);
+        return mav;
     }
 
     @RequestMapping("/list/edit/{hash}/del/{id}")
