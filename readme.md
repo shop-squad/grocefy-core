@@ -8,7 +8,7 @@ Celem aplikacji jest ułatwienie użytkownikowi robienie zakupów, co pozwoli mu
 
 #### Link do aplikacji
 
-www.grocefy.herokuapp.com
+https://grocefy.herokuapp.com
 
 
 #### Wygląd głównego menu aplikacji
