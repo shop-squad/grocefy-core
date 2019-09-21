@@ -33,3 +33,18 @@ Dodane produkty można usuwać używając symbolu X
 ![how to edit list](.readme_images/view_on_list.jpg)
 
 Możesz podzielić się swoją listą kopiując link do listy i wysłać go do innej osoby.
+
+
+### Technologie użyte w aplikacji
+
+- SpringBoot - backend
+- ThymeLeaf - frontend
+- MySQL - baza danych
+- Spring Security - logowanie i rejestracja użytkowników
+- heroku.com - hoosting aplikacji 
+
+
+
+### Autorzy
+- Radosław Janus:   https://github.com/Radekj512
+- Anna Muszel:      https://github.com/annamuszel
