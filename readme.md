@@ -16,8 +16,22 @@ www.grocefy.herokuapp.com
 
 #### Jak używać aplikacji
 
-Funkcje w aplikacji są samoopisujące, staraliśmy się jak najbardziej ułatwić użytkownikowi korzystanie z aplikacji.
-Podczas pierwszego uruchomienia należy stworzyć nową listę. W tym celu należy nacisnąć przycisk 'Dodaj listę.'
+Funkcje w aplikacji są samoopisujące, by jak najbardziej ułatwić użytkownikowi korzystanie z aplikacji.
 
+Podczas pierwszego uruchomienia należy stworzyć nową listę. W tym celu należy podać nazwę listy oraz nacisnąć przycisk 'Dodaj listę.'
+
+Po dodaniu zostanie ona wyświetlona w sekcji 'Zapisane listy'. Aby edytować listę należy kliknąć 'Edytuj':
+
+![how to edit list](.readme_images/edit_list.jpg)
+
+Używając panelu dodaj produkty do listy:
+
+![how to edit list](.readme_images/add_product_panel.jpg)
+
+Dodane produkty można usuwać używając symbolu X
+
+![how to edit list](.readme_images/view_on_list.jpg)
+
+Możesz podzielić się swoją listą kopiując link do listy i wysłać go do innej osoby.
 
 
