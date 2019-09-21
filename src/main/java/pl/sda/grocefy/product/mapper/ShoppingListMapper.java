@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.ShoppingListEntity;
-
-import java.util.stream.Collectors;
-
 @Component
 public class ShoppingListMapper {
 

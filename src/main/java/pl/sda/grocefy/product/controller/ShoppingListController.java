@@ -52,6 +52,8 @@ public class ShoppingListController {
     @RequestMapping("/list/{hash}")
     public ModelAndView showList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("showList");
+        mav.addObject("list", shoppingListService.findListByHash(hash));
+        mav.addObject("items", itemService.findItemByListHash(hash));
         mav.addObject(LIST, shoppingListService.findListByHash(hash));
         mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         return mav;
@@ -60,6 +62,8 @@ public class ShoppingListController {
     @RequestMapping(value = "/list/edit/{hash}")
     public ModelAndView editList(@PathVariable("hash") String hash) {
         ModelAndView mav = new ModelAndView("editList");
+        mav.addObject("list", shoppingListService.findListByHash(hash));
+        mav.addObject("items", itemService.findItemByListHash(hash));
         mav.addObject(LIST, shoppingListService.findListByHash(hash));
         mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         mav.addObject("units", Unit.values());
@@ -89,5 +93,12 @@ public class ShoppingListController {
         Optional<ItemDTO> first = itemByListHash.stream().filter(itemDTO -> itemDTO.getId().equals(Long.valueOf(id))).findFirst();
         first.ifPresent(itemService::removeItem);
         return new ModelAndView("redirect:/list/edit/" + hash);
+    }
+
+    @PostMapping("/list/del/{hash}")
+    public ModelAndView deleteList(@PathVariable("hash") String hash){
+        itemService.deleteAllItemsByListHash(hash);
+        shoppingListService.deleteList(hash);
+        return new ModelAndView("redirect:/");
     }
 }

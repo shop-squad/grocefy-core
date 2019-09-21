@@ -17,5 +17,4 @@ public class ItemDTO {
     private String hash;
     private int count;
     private Unit unit;
-
 }

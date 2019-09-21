@@ -6,6 +6,8 @@ import pl.sda.grocefy.product.entity.ItemEntity;
 import pl.sda.grocefy.product.mapper.ItemMapper;
 import pl.sda.grocefy.product.repository.ItemRepository;
 import pl.sda.grocefy.product.service.ItemService;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,5 +37,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void removeItem(ItemDTO itemToRemove) {
         repository.deleteById(itemToRemove.getId());
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllItemsByListHash(String hash) {
+        repository.deleteAllByHash(hash);
     }
 }

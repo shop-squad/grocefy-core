@@ -9,4 +9,5 @@ public interface ShoppingListService {
     List<ShoppingListDTO> getAll();
     Long getListIdFromHash(String hash);
     void addList(ShoppingListDTO shoppingListDTO);
+    void deleteList(String hash);
 }
