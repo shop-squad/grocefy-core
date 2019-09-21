@@ -8,4 +8,5 @@ public interface UserService {
     UserDTO findUser(String username);
     void addUser(UserDTO newUser);
    // UserDTO findUserByEmail(String email);
+    Long getUserId();
 }

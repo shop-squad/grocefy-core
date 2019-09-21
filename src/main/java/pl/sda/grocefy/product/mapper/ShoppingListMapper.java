@@ -8,11 +8,12 @@ import pl.sda.grocefy.product.entity.ShoppingListEntity;
 @Component
 public class ShoppingListMapper {
 
+
     public ShoppingListDTO mapToDTO(ShoppingListEntity shoppingListEntity){
         return ShoppingListDTO.builder()
                 .name(shoppingListEntity.getName())
                 .hash(shoppingListEntity.getHash())
-                .user(null).build();
+                .ownerId(shoppingListEntity.getOwnerId()).build();
     }
 
     public ShoppingListEntity mapToEntity(ShoppingListDTO shoppingListDTO){
@@ -20,6 +21,6 @@ public class ShoppingListMapper {
                 .id(null)
                 .name(shoppingListDTO.getName())
                 .hash(shoppingListDTO.getHash())
-                .user(null).build();
+                .ownerId(shoppingListDTO.getOwnerId()).build();
     }
 }

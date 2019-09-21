@@ -1,6 +1,7 @@
 package pl.sda.grocefy.product.service;
 
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
+import pl.sda.grocefy.product.dto.UserDTO;
 import pl.sda.grocefy.product.exception.ListNotFoundException;
 import pl.sda.grocefy.product.exception.WebApplicationException;
 
@@ -11,4 +12,5 @@ public interface ShoppingListService {
     List<ShoppingListDTO> getAll();
     void addList(ShoppingListDTO shoppingListDTO);
     void deleteList(String hash);
+    List<ShoppingListDTO> getAllByUserId(Long userId);
 }

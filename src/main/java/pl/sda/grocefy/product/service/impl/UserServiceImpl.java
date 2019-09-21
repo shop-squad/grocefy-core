@@ -1,6 +1,9 @@
 package pl.sda.grocefy.product.service.impl;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,7 @@ import pl.sda.grocefy.product.repository.UserRepository;
 import pl.sda.grocefy.product.service.UserService;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 
 @Service
@@ -45,9 +49,18 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userEntity);
     }
 
-
-
-//    @Override
+    @Override
+    public Long getUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        Optional<UserEntity> user = userRepository.findByUsername(name);
+        if (user.isPresent()){
+            return user.get().getId();
+        }else {
+            throw new UsernameNotFoundException("User not found");
+        }
+    }
+    //    @Override
 //    public UserDTO findUserByEmail(String email) {
 //        return userMapper.mapUser(userRepository.findByUsername(email));
 //    }

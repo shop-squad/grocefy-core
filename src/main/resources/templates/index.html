@@ -34,7 +34,6 @@
                             <th>Lp</th>
                             <th>Nazwa</th>
                             <th>Hash listy</th>
-                            <th>Użytkownik</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,7 +41,6 @@
                             <td th:text="${rowStat.index}+1">1</td>
                             <td th:text="${list.name}">lista</td>
                             <td><a th:href="@{/list/}+${list.hash}" th:text="${list.hash}"></a> </td>
-                            <td th:text="${list.user}">user</td>
                             <td><form th:action="@{/list/edit/}+${list.hash}" th:method="get"><input th:type="submit" class="btn btn-warning" th:value="Edytuj"/></form></td>
                             <td><form th:action="@{/list/del/}+${list.hash}" th:method="post" ><input th:type="submit" class="btn btn-danger" th:value="Usuń"/> </form></td>
                         </tr>

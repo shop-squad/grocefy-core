@@ -22,6 +22,5 @@ public class ShoppingListEntity {
     private String name;
     private String hash;
 
-    @ManyToOne
-    private UserEntity user;
+    private Long ownerId;
     }
