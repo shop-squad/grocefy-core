@@ -3,6 +3,7 @@ package pl.sda.grocefy.product.service.impl;
 import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.entity.ItemEntity;
+import pl.sda.grocefy.product.exception.WebApplicationException;
 import pl.sda.grocefy.product.mapper.ItemMapper;
 import pl.sda.grocefy.product.repository.ItemRepository;
 import pl.sda.grocefy.product.service.ItemService;

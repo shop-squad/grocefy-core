@@ -3,6 +3,7 @@ package pl.sda.grocefy.product.service.impl;
 import org.springframework.stereotype.Service;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.ShoppingListEntity;
+import pl.sda.grocefy.product.exception.ListNotFoundException;
 import pl.sda.grocefy.product.mapper.ShoppingListMapper;
 import pl.sda.grocefy.product.repository.ShoppingListRepository;
 import pl.sda.grocefy.product.service.ShoppingListService;
@@ -24,7 +25,11 @@ public class ShoppingListServiceImpl implements ShoppingListService {
 
 
     @Override
-    public ShoppingListDTO findListByHash(String hash) {
+    public ShoppingListDTO findListByHash(String hash) throws ListNotFoundException {
+        ShoppingListEntity byHash = shoppingListRepository.findByHash(hash);
+        if (byHash == null) {
+            throw new ListNotFoundException("Lista pod podanym adresem nie istnieje");
+        }
         return mapper.mapToDTO(shoppingListRepository.findByHash(hash));
     }
 
@@ -41,11 +46,6 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         return all.stream().map(mapper::mapToDTO).collect(Collectors.toList());
     }
 
-    @Override
-    public Long getListIdFromHash(String hash) {
-        ShoppingListEntity byHash = shoppingListRepository.findByHash(hash);
-        return byHash.getId();
-    }
 
     @Override
     public void deleteList(String hash) {
