@@ -20,8 +20,6 @@ public class ItemEntity {
     private Long id;
     private String product;
     private String hash;
-    //    @OneToOne(cascade = CascadeType.ALL)
-    //    private ProductEntity product;
     private int count;
     @Enumerated(EnumType.STRING)
     private Unit unit;

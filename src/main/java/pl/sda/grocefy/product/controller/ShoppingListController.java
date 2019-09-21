@@ -3,11 +3,14 @@ package pl.sda.grocefy.product.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 import pl.sda.grocefy.product.dto.ItemDTO;
+import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.Unit;
 import pl.sda.grocefy.product.exception.WebApplicationException;
 import pl.sda.grocefy.product.service.ItemService;
+import pl.sda.grocefy.product.service.ProductService;
 import pl.sda.grocefy.product.service.ShoppingListService;
 
 
@@ -22,7 +25,10 @@ public class ShoppingListController {
     private final ShoppingListService shoppingListService;
     private final ItemService itemService;
 
-    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService) {
+    private final static String LIST = "list";
+    private final static String ITEMS = "items";
+
+    public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService, ProductService productService) {
         this.shoppingListService = shoppingListService;
         this.itemService = itemService;
     }
@@ -47,16 +53,16 @@ public class ShoppingListController {
     @RequestMapping("/list/{hash}")
     public ModelAndView showList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("showList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
+        mav.addObject(LIST, shoppingListService.findListByHash(hash));
+        mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         return mav;
     }
 
     @RequestMapping(value = "/list/edit/{hash}")
     public ModelAndView editList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("editList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
+        mav.addObject(LIST, shoppingListService.findListByHash(hash));
+        mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         mav.addObject("units", Unit.values());
         mav.addObject("newItem", new ItemDTO());
         return mav;
@@ -86,8 +92,8 @@ public class ShoppingListController {
         return new ModelAndView("redirect:/list/edit/" + hash);
     }
 
-    @RequestMapping("/list/del/{hash}")
-    public ModelAndView deleteList(@PathVariable("hash") String hash) {
+    @PostMapping("/list/del/{hash}")
+    public ModelAndView deleteList(@PathVariable("hash") String hash){
         itemService.deleteAllItemsByListHash(hash);
         shoppingListService.deleteList(hash);
         return new ModelAndView("redirect:/");
