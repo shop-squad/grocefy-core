@@ -18,9 +18,7 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
-
     @ManyToOne
     private CategoryEntity category;
 }
