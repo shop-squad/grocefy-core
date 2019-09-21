@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns: layout:decorate="layout/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Grocefy</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger">
+                <h1>Wystąpił błąd</h1><br/>
+                <h2 th:text="${message}">ERROE MESSAGE</h2>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

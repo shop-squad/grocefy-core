@@ -3,13 +3,16 @@ package pl.sda.grocefy.product.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 import pl.sda.grocefy.product.dto.ItemDTO;
 import pl.sda.grocefy.product.dto.ProductDTO;
 import pl.sda.grocefy.product.dto.ShoppingListDTO;
 import pl.sda.grocefy.product.entity.Unit;
+import pl.sda.grocefy.product.exception.WebApplicationException;
 import pl.sda.grocefy.product.service.ItemService;
 import pl.sda.grocefy.product.service.ProductService;
 import pl.sda.grocefy.product.service.ShoppingListService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,6 @@ public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
     private final ItemService itemService;
-    private final ProductService productService;
 
     private final static String LIST = "list";
     private final static String ITEMS = "items";
@@ -29,7 +31,6 @@ public class ShoppingListController {
     public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService, ProductService productService) {
         this.shoppingListService = shoppingListService;
         this.itemService = itemService;
-        this.productService = productService;
     }
 
 
@@ -50,20 +51,16 @@ public class ShoppingListController {
     }
 
     @RequestMapping("/list/{hash}")
-    public ModelAndView showList(@PathVariable("hash") String hash) {
+    public ModelAndView showList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("showList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
         mav.addObject(LIST, shoppingListService.findListByHash(hash));
         mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         return mav;
     }
 
     @RequestMapping(value = "/list/edit/{hash}")
-    public ModelAndView editList(@PathVariable("hash") String hash) {
+    public ModelAndView editList(@PathVariable("hash") String hash) throws WebApplicationException {
         ModelAndView mav = new ModelAndView("editList");
-        mav.addObject("list", shoppingListService.findListByHash(hash));
-        mav.addObject("items", itemService.findItemByListHash(hash));
         mav.addObject(LIST, shoppingListService.findListByHash(hash));
         mav.addObject(ITEMS, itemService.findItemByListHash(hash));
         mav.addObject("units", Unit.values());
@@ -74,21 +71,21 @@ public class ShoppingListController {
     @PostMapping("/list/edit/{hash}")
     public ModelAndView addItemToList(@PathVariable("hash") String hash, @ModelAttribute("newItem") ItemDTO newItem) {
         List<ItemDTO> itemsList = itemService.findItemByListHash(hash);
-        Optional<ItemDTO> first = itemsList.stream().filter(itemDTO -> itemDTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst();
-        ModelAndView mav = new ModelAndView("redirect:/list/edit/" + hash);
-        if (first.isPresent()) {
-            ItemDTO itemDTO = first.get();
+        ItemDTO itemDTO = itemsList.stream().filter(DTO -> DTO.getProduct().equalsIgnoreCase(newItem.getProduct())).findFirst().orElse(newItem);
+
+        if (!itemDTO.equals(newItem) && itemDTO.getUnit().equals(newItem.getUnit())) {
             itemService.removeItem(itemDTO);
             itemDTO.setCount(itemDTO.getCount() + newItem.getCount());
             itemService.addItem(hash, itemDTO);
         } else {
             itemService.addItem(hash, newItem);
         }
-        return mav;
+
+        return new ModelAndView("redirect:/list/edit/" + hash);
     }
 
     @RequestMapping("/list/edit/{hash}/del/{id}")
-    public ModelAndView deleteItemFromList(@PathVariable("hash") String hash, @PathVariable("id") String id ){
+    public ModelAndView deleteItemFromList(@PathVariable("hash") String hash, @PathVariable("id") String id) {
         List<ItemDTO> itemByListHash = itemService.findItemByListHash(hash);
         Optional<ItemDTO> first = itemByListHash.stream().filter(itemDTO -> itemDTO.getId().equals(Long.valueOf(id))).findFirst();
         first.ifPresent(itemService::removeItem);
