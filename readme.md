@@ -1,15 +1,35 @@
 # Grocefy
 
-#### A XXI century shopping list is here!
+## Lista zakupów którą możesz się podzielić z innymi! 
 
-If you ever struggle to remember all necessery products that you need to buy - this is app for you! 
+Aplikacja pozwala na stworzenie własnej listy zakupów, dodawanie produktów wraz z ilością oraz dzielenia się tą listą z innymi tak by mogli również dodawać wpisy.
 
-Thanks to Grocefy you can add products to your list and later you can access list when you are in the shop, allows you to buy everything that you need.
+Celem aplikacji jest ułatwienie użytkownikowi robienie zakupów, co pozwoli mu zaoszczędzić czas.
 
-But this is not all that you can do with Grocefy. You can share list with others so they can add products to your list - from now on no one will forget to buy milk!
+#### Link do aplikacji
 
-#### Getting started
+https://grocefy.herokuapp.com
 
-To run application please first you need to configure following things:
-- set MySQL database
-- 
+
+#### Wygląd głównego menu aplikacji
+![Main menu of application](.readme_images/main_page.jpg)
+
+#### Jak używać aplikacji
+
+Funkcje w aplikacji są samoopisujące, by jak najbardziej ułatwić użytkownikowi korzystanie z aplikacji.
+
+Podczas pierwszego uruchomienia należy stworzyć nową listę. W tym celu należy podać nazwę listy oraz nacisnąć przycisk 'Dodaj listę.'
+
+Po dodaniu zostanie ona wyświetlona w sekcji 'Zapisane listy'. Aby edytować listę należy kliknąć 'Edytuj':
+
+![how to edit list](.readme_images/edit_list.jpg)
+
+Używając panelu dodaj produkty do listy:
+
+![how to edit list](.readme_images/add_product_panel.jpg)
+
+Dodane produkty można usuwać używając symbolu X
+
+![how to edit list](.readme_images/view_on_list.jpg)
+
+Możesz podzielić się swoją listą kopiując link do listy i wysłać go do innej osoby.
