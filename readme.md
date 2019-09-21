@@ -33,5 +33,3 @@ Dodane produkty można usuwać używając symbolu X
 ![how to edit list](.readme_images/view_on_list.jpg)
 
 Możesz podzielić się swoją listą kopiując link do listy i wysłać go do innej osoby.
-
-

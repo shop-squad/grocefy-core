@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns: layout:decorate="layout/layout">
-</head>>
 <head>
     <meta charset="UTF-8">
     <title>Grocefy</title>
@@ -15,14 +14,15 @@
             <div class="col-sm-12">
                 <h3>Dodaj listę</h3>
             </div>
+
             <form action="#" th:action="@{/list/new}" th:object="${newList}" th:method="post">
 
                 <div class="col-sm-12 col-lg-6 text-center">
-                    <label for="listName">Nazwa listy</label>
-                    <input type="text" id="listName" th:field="*{name}">
+                    <label th:for="*{name}">Nazwa listy</label>
+                    <input type="text" th:field="*{name}" required>
                 </div>
                 <div class="col-sm-12 col-lg-6 text-center">
-                    <input type="submit" class="button btn-success" value="Dodaj listę"/>
+                    <input type="submit" class="btn btn-success" value="Dodaj listę"/>
                 </div>
             </form>
             <div class="col-sm-12">
@@ -43,8 +43,8 @@
                             <td th:text="${list.name}">lista</td>
                             <td><a th:href="@{/list/}+${list.hash}" th:text="${list.hash}"></a> </td>
                             <td th:text="${list.user}">user</td>
-                            <td><a th:href="@{/list/edit/}+${list.hash}" th:text="Edit"></a></td>
-                            <td><a th:href="@{/list/del/}+${list.hash}" th:text="Delete"></a></td>
+                            <td><form th:action="@{/list/edit/}+${list.hash}" th:method="get"><input th:type="submit" class="btn btn-warning" th:value="Edytuj"/></form></td>
+                            <td><form th:action="@{/list/del/}+${list.hash}" th:method="post" ><input th:type="submit" class="btn btn-danger" th:value="Usuń"/> </form></td>
                         </tr>
                         </tbody>
                     </table>
