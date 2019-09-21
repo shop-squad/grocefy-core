@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    private static final String[] MATCHERS = {"/images/**","/", "/login", "/register", "/list", "/webjars/**" ,"/add-new"};
+    private static final String[] MATCHERS = {"/images/**","/", "/login", "/register", "/list", "/webjars/**" };
     private static final String[] ADMIN_MATCHERS = {"/admin/**"};
 
     private final UserDetailsService userDetailsService;

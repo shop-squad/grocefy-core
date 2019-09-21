@@ -29,7 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findUser(String username) {
-        return userMapper.mapUser(userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("no such user")));
+        return userMapper.mapUser(userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("no such user")
+        ));
     }
 
     @Override
