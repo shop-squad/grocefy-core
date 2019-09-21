@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns: layout:decorate="layout/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Grocefy</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <h3 th:text="${list.name}">Nazwa l;isty</h3>
+                <div class="row col-md-7 table-responsive ">
+                    <table id="listTable" class="table">
+                        <thead>
+                        <tr>
+                            <th>Lp</th>
+                            <th>Ilość</th>
+                            <th>Jednostka</th>
+                            <th>Produkt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item, rowStat : ${items}"
+                            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                            <td th:text="${rowStat.index}+1">1</td>
+                            <td th:text="${item.count}">Ilosc</td>
+                            <td th:text="${item.unit}">Jednostka</td>
+                            <td th:text="${item.product}">Produkt</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

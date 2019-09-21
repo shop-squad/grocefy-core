@@ -8,40 +8,48 @@
     <meta charset="UTF-8">
     <title>Grocefy</title>
 </head>
-<script type="text/javascript">
-    function Copy() {
-        var Url = document.getElementById("url");
-        Url.innerHTML = window.location.href;
-        console.log(Url.innerHTML)
-        Url.select();
-        document.execCommand("copy");
-    }
-</script>
 <body>
 <div layout:fragment="content">
     <div class="container">
-
-
-        <div align="center">Dodaj element</div>
-    </div>
-    <div align="center">
-        <form action="#" th:action="@{/list/add}" th:object="${newItem}" method="post">
-
-            <button type="button">+</button>
-
-            <input type="text" th:field="*{count}">
-
-            <div class="dropdown">
-                <select>
-                    <option th:each="unit : ${units}" th:value="${unit.name()}" th:label="${unit.name()}">bla</option>
-                </select>
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <h3>Dodaj listę</h3>
             </div>
+            <form action="#" th:action="@{/list/new}" th:object="${newList}" th:method="post">
 
-            <input type="text" th:field="*{product}">
-
-        </form>
-
-
+                <div class="col-sm-12 col-lg-6 text-center">
+                    <label for="listName">Nazwa listy</label>
+                    <input type="text" id="listName" th:field="*{name}">
+                </div>
+                <div class="col-sm-12 col-lg-6 text-center">
+                    <input type="submit" class="button btn-success" value="Dodaj listę"/>
+                </div>
+            </form>
+            <div class="col-sm-12">
+                <h3>Zapisane listy</h3>
+                <div class="row col-md-7 table-responsive ">
+                    <table id="listTable" class="table">
+                        <thead>
+                        <tr>
+                            <th>Lp</th>
+                            <th>Nazwa</th>
+                            <th>Hash listy</th>
+                            <th>Użytkownik</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="list, rowStat : ${lists}" th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                            <td th:text="${rowStat.index}+1">1</td>
+                            <td th:text="${list.name}">lista</td>
+                            <td><a th:href="@{/list/}+${list.hash}" th:text="${list.hash}"></a> </td>
+                            <td th:text="${list.user}">user</td>
+                            <td><a th:href="@{/list/edit/}+${list.hash}" th:text="Edit"></a></td>
+                            <td><a th:href="@{/list/del/}+${list.hash}" th:text="Delete"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
     </div>
 </div>
 </body>

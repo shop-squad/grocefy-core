@@ -1,7 +1,9 @@
 package pl.sda.grocefy.product.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -9,17 +11,15 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "item")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne
-    private ShoppingListEntity list;
-
-    @OneToOne
-    private ProductEntity product;
+    private String product;
+    private String hash;
     private int count;
     @Enumerated(EnumType.STRING)
     private Unit unit;
